@@ -1,0 +1,332 @@
+
+
+.container {
+	text-align: left;
+	width: 800px;
+    /* max-width: 85%; */
+}
+
+html{
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 1.1rem; 
+	margin: 0;
+	padding: 0;
+	background-repeat: inherit;
+	width: 100%;
+	height: 100%;
+}
+body{
+	margin: 0;
+	font-family: Helvetica, Arial, sans-serif;
+	text-align: center;
+	padding: 0;
+}
+main{
+	background-color: rgb(250, 250, 250);
+		border-top: none;
+		/*border: 0.5px solid gray; */
+		border-radius: 5px;
+		padding: 20px 80px;
+		width: 100%;
+		margin: 0 auto;
+		overflow: auto;
+		box-shadow: 0 5px 10px rgb(40, 111, 153);
+}
+
+nav{
+	background-color: rgb(35, 56, 82);
+	/* background-color: rgb(14, 64, 151); */
+	color: white;
+	margin: 0;
+	text-align: center;
+	top: 0;
+	
+}
+
+main legend h3{
+	width: 100%;
+	font-size: 1.3rem;
+	font-weight: bold;
+	padding: 10px;
+	margin: 0;
+	color:rgb(2, 20, 36);
+	background-color: transparent;
+	border-radius: 10px;
+	position: relative;
+	top: 14px;
+	
+	
+}
+
+header{
+	background-color: rgb(0, 70, 117);
+	/* background-color: rgb(45, 105, 189); */
+	color:snow;
+	width: auto;
+	margin: 0;
+	padding: 1%;
+	text-align: center;
+	border-bottom: 2px solid black;
+	box-shadow: 0 2px 10px rgba(3, 3, 3, 0.301);
+}
+
+#listaCandidatos table {
+	width: 100%;
+	border-spacing: 0;
+	border: 1px solid #666 
+}
+
+#listaCandidatos th {
+	background: #ddd;
+	text-align: center;
+	
+}
+
+th {
+	/* border: 1px solid #666; */
+	text-align: center
+	
+}
+td {
+	/* border: 1px solid #666; */
+	text-align: center
+	
+}
+
+td:first-child {
+	text-align: center;
+	font-weight: bold;
+	width: 80px
+}
+
+#listaCandidatos .nsort {
+	text-align: center;
+	font-weight: bold;
+	width: 80px
+}
+
+.lista table{
+	width: 100%;
+	border-spacing: 0;
+	border: 1px solid #666;
+}
+.lista th{
+	background: #ddd;
+	text-align: center;
+}
+
+.lista .nsort{
+	text-align: center;
+	font-weight: bold;
+	width: 80px
+}
+#tabelaClassificacao {
+	width: 100%;
+	border-spacing: 0;
+	border: 1px solid #666
+}
+
+#tabelaClassificacao td {
+	/* border: 1px solid #666; */
+	text-align: center
+	
+}
+
+#tabelaClassificacao th {
+	/* border: 1px solid #666; */
+	background: #ddd;
+	text-align: center;
+	
+}
+
+#tabelaClassificacao .npos {
+	text-align: center;
+	font-weight: bold;
+	width: 80px
+}
+
+#tabelaClassificacao .nsort {
+	text-align: center;
+	font-weight: bold;
+	width: 80px
+}
+
+#container {
+	width: 70%
+    /* ajustar tamanho lateral --> deixar 100% aqui e no .container colocar a % desejada */
+
+}
+
+span input{
+	color: red;
+	text-decoration: red;
+	font-size: 1.4rem;
+}
+
+#md5 span input {
+	padding: 1%;
+	color: red;
+	text-decoration: red;
+	font-size: 1.4rem;
+}
+
+div {
+	padding: 0.5%
+}
+
+#info{
+	margin-top: 4%;
+	background-color: #ddd; 
+	border-radius: 5px;
+	
+}
+
+fieldset{
+	background-color: whitesmoke;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	padding: 20px;
+	border: none;
+}
+
+.fundo{
+	background-color: whitesmoke;
+	float: left;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	padding: 0.5%;
+	border: none;
+}
+
+.fundocor{
+	background-color: whitesmoke;
+	border-radius: 5px;
+	display: none;
+}
+
+.fontmaior div{
+	font-size: 1.2rem;
+}
+
+#contorno{
+	background-color: rgb(161, 176, 196);
+	border-radius: 10px;
+	margin: 0;
+	padding: 20px;
+
+}
+
+
+input::placeholder{
+	color: rgb(218, 183, 176);
+}
+
+select{
+	border-radius: 5px;
+	margin-bottom: 20px;
+	font-size: 1.1rem;
+}
+
+textarea{
+	width: 99%;
+	border-radius: 5px;
+	font-size: 1.1rem;
+
+}
+input{
+	font-size: 1.1rem;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: none;
+	outline: none;
+}
+input[type="text"]{
+	width: 90%;
+	
+}
+input[type="checkbox"]{
+	margin-left: 5%;
+}
+
+#idmd5{
+	width: fit-content;
+}
+
+#texto{
+	width: fit-content;
+}
+
+input:focus{
+	
+	box-shadow: 0 0 5px rgb(58, 130, 218);
+	outline: none;
+}
+
+.checkboxes{
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+.meiaLargura{
+	width: 50%;
+	min-width: 30%;
+	max-width: 50%;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover{
+	background-color: rgb(35, 56, 82);
+	color: white;
+}
+
+
+input:invalid{
+	background-color: rgba(243, 207, 200, 0.658);
+}
+
+input:valid{
+	background-color: white;
+}
+
+input:invalid + span::after{
+	content: '✗';
+	color: red;
+}
+input:valid + span::after{
+	content: '✓';
+	color: green;
+}
+
+table{
+	margin: 0;
+	width: 100%
+}
+footer{
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+.linha{
+	display: inline-flex;
+	text-align: center;
+}
+
+input[type="number"]{
+	width: 50%;
+}
+
+p{
+	margin-top: 5%;
+	padding: 5px;
+}
+
+#fundoSorteio{
+	background-color: whitesmoke;
+	border-radius: 5px;
+}
+
+#copyright{
+    margin-top: 0;
+    margin-bottom: 0;
+}

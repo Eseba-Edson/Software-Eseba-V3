@@ -1,0 +1,43 @@
+.arrow_animation_00, .arrow_animation_01, .arrow_animation_02, .arrow_animation_03, .arrow_animation_04,
+.arrow_animation_05, .arrow_animation_06, .arrow_animation_07, .arrow_animation_08, .arrow_animation_09,
+.arrow_animation_10, .arrow_animation_11, .arrow_animation_12, .arrow_animation_13, .arrow_animation_14,
+.arrow_animation_15, .arrow_animation_16, .arrow_animation_17, .arrow_animation_18, .arrow_animation_19,
+.arrow_animation_20, .arrow_animation_21, .arrow_animation_22, .arrow_animation_23, .arrow_animation_24,
+.arrow_animation_25, .arrow_animation_26, .arrow_animation_27, .arrow_animation_28, .arrow_animation_29,
+.arrow_animation_30, .arrow_animation_31, .arrow_animation_32, .arrow_animation_33 {
+  background: url('//d1c4ogak0lt2ja.cloudfront.net/image/sprite/v1388104904/arrow_animation.gif') no-repeat;
+}
+.arrow_animation_00 { background-position: 0px 0px; width: 280px; height: 150px; }
+.arrow_animation_01 { background-position: 0px -152px; width: 280px; height: 150px; }
+.arrow_animation_02 { background-position: 0px -304px; width: 280px; height: 150px; }
+.arrow_animation_03 { background-position: 0px -456px; width: 280px; height: 150px; }
+.arrow_animation_04 { background-position: 0px -608px; width: 280px; height: 150px; }
+.arrow_animation_05 { background-position: 0px -760px; width: 280px; height: 150px; }
+.arrow_animation_06 { background-position: 0px -912px; width: 280px; height: 150px; }
+.arrow_animation_07 { background-position: 0px -1064px; width: 280px; height: 150px; }
+.arrow_animation_08 { background-position: 0px -1216px; width: 280px; height: 150px; }
+.arrow_animation_09 { background-position: 0px -1368px; width: 280px; height: 150px; }
+.arrow_animation_10 { background-position: 0px -1520px; width: 280px; height: 150px; }
+.arrow_animation_11 { background-position: 0px -1672px; width: 280px; height: 150px; }
+.arrow_animation_12 { background-position: 0px -1824px; width: 280px; height: 150px; }
+.arrow_animation_13 { background-position: 0px -1976px; width: 280px; height: 150px; }
+.arrow_animation_14 { background-position: 0px -2128px; width: 280px; height: 150px; }
+.arrow_animation_15 { background-position: 0px -2280px; width: 280px; height: 150px; }
+.arrow_animation_16 { background-position: 0px -2432px; width: 280px; height: 150px; }
+.arrow_animation_17 { background-position: 0px -2584px; width: 280px; height: 150px; }
+.arrow_animation_18 { background-position: 0px -2736px; width: 280px; height: 150px; }
+.arrow_animation_19 { background-position: 0px -2888px; width: 280px; height: 150px; }
+.arrow_animation_20 { background-position: 0px -3040px; width: 280px; height: 150px; }
+.arrow_animation_21 { background-position: 0px -3192px; width: 280px; height: 150px; }
+.arrow_animation_22 { background-position: 0px -3344px; width: 280px; height: 150px; }
+.arrow_animation_23 { background-position: 0px -3496px; width: 280px; height: 150px; }
+.arrow_animation_24 { background-position: 0px -3648px; width: 280px; height: 150px; }
+.arrow_animation_25 { background-position: 0px -3800px; width: 280px; height: 150px; }
+.arrow_animation_26 { background-position: 0px -3952px; width: 280px; height: 150px; }
+.arrow_animation_27 { background-position: 0px -4104px; width: 280px; height: 150px; }
+.arrow_animation_28 { background-position: 0px -4256px; width: 280px; height: 150px; }
+.arrow_animation_29 { background-position: 0px -4408px; width: 280px; height: 150px; }
+.arrow_animation_30 { background-position: 0px -4560px; width: 280px; height: 150px; }
+.arrow_animation_31 { background-position: 0px -4712px; width: 280px; height: 150px; }
+.arrow_animation_32 { background-position: 0px -4864px; width: 280px; height: 150px; }
+.arrow_animation_33 { background-position: 0px -5016px; width: 280px; height: 150px; }

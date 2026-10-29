@@ -1,0 +1,1404 @@
+<!--Autores: Paulo Souza, Pedro Ribeiro-->
+<!--02/09/2022-->
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Sorteio Eletrônico - Escola de Educação Básica da UFU (ESEBA-UFU)</title>
+	<script src="js/seedrandom.js"></script>
+	<script src="js/salvapdf.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+	<!-- <script src = "js/jspdf.plugin.autotable.js"></script> -->
+	<!-- <script src = "js/jspdf.plugin.autotable.min.js"></script> -->
+	<script type="text/javascript" src="js/sorteio.js"></script> 
+	<!-- <script type="text/javascript" src="js/sorteio(testes).js"></script>  -->
+
+	<script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
+	
+	<!-- início do md5 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/q.js/1.4.1/q.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/2.0.2/spark-md5.min.js"></script>
+
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+	<header>
+		<img src="images/eseba_descricao.png" width="600px" />
+		<img src="images/ano.png" width="198px" height="90px" id="logoano"/>
+	</header>
+
+	<nav>
+		<br>
+	</nav>
+
+	<div  id="largura" style="background-color:rgb(35, 56, 82)">
+		<div class="container" id="container">
+			<main>
+				<div id="contorno" > 
+					<form name="sorteio">
+						<div class="fundo col-sm-12">
+							<legend><h3>Geral</h3></legend>
+							<div class="col-sm-12">
+								<label class="mb-2" for="nomecurso">Sorteio:</label>
+								<input type="text" name="nomeCurso" id="nomecurso" size=35 maxlength=100 value="Eseba/2025">	
+							</div>
+							<div class="col-sm-12">
+								<input type="checkbox" checked name="habilitarM7"
+								onclick="habilitarModalidadeExtras('ModalidadeM7', this.checked);">M7
+								<input type="checkbox" checked name="habilitarM8"
+								onclick="habilitarModalidadeExtras('ModalidadeM8', this.checked);">M8
+							</div>
+						</div>
+
+						<div class=" row fundo col-sm-12">
+
+							<div class="fundo col-sm-6">
+								<legend>
+									<h3>1º Período Infantil - Vagas</h3>
+								</legend>
+
+								<input type="checkbox" checked name="primeiroPManual"
+									onclick="habilitarModalidade('primeirovCM','primeirovSM', this.checked); habilitarModalidade('primeiroeCM','primeiroeSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="primeirovSM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="1vac">AC:</label>
+											<input type="number" name="1vac" id="1vac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="1vdf">PCD:</label>
+											<input type="number" name="1vdf" id="1vdf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="primeirovCM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1vmAC">AC:</label>
+											<input type="number" name="1vmAC" id="1vmAC" min="1" value="30">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1vm1">M1:</label>
+											<input type="number" name="1vm1" id="1vm1" min="0" value="8">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1vm2">M2:</label>
+											<input type="number" name="1vm2" id="1vm2" min="0" value="8">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1vm3">M3:</label>
+											<input type="number" name="1vm3" id="1vm3" min="0" value="8">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1vm4">M4:</label>
+											<input type="number" name="1vm4" id="1vm4" min="0" value="2">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1vm5">M5:</label>
+											<input type="number" name="1vm5" id="1vm5" min="0" value="2">
+										</div>
+
+									</div>
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1vm6">M6:</label>
+											<input type="number" name="1vm6" id="1vm6" min="0" value="2">
+										</div>
+
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block">
+											<label class="mb-2" for="1vm7">M7:</label>
+											<input type="number" name="1vm7" id="1vm7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block">
+											<label class="mb-2" for="1vm8">M8:</label>
+											<input type="number" name="1vm8" id="1vm8" min="0" value="0">
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>1º Período Infantil - Espera</h3>
+								</legend>
+
+								<p></p>
+
+								<div id="primeiroeSM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="1eac">AC:</label>
+											<input type="number" name="1eac" id="1eac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="1edf">PCD:</label>
+											<input type="number" name="1edf" id="1edf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="primeiroeCM" style="display:block">
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1emAC">AC:</label>
+											<input type="number" name="1emAC" id="1emAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1em1">M1:</label>
+											<input type="number" name="1em1" id="1em1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1em2">M2:</label>
+											<input type="number" name="1em2" id="1em2" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1em3">M3:</label>
+											<input type="number" name="1em3" id="1em3" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1em4">M4:</label>
+											<input type="number" name="1em4" id="1em4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1em5">M5:</label>
+											<input type="number" name="1em5" id="1em5" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1em6">M6:</label>
+											<input type="number" name="1em6" id="1em6" min="0" value="10">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block">
+											<label class="mb-2" for="1em7">M7:</label>
+											<input type="number" name="1em7" id="1em7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block">
+											<label class="mb-2" for="1em8">M8:</label>
+											<input type="number" name="1em8" id="1em8" min="0" value="0">
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>2º Período Infantil - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="2manual"
+									onclick="habilitarModalidade('segundovCM','segundovSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="segundovSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="2eac">AC:</label>
+											<input type="number" name="2eac" id="2eac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="2edf">PCD:</label>
+											<input type="number" name="2edf" id="2edf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="segundovCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="2emAC">AC:</label>
+											<input type="number" name="2emAC" id="2emAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2em1">M1:</label>
+											<input type="number" name="2em1" id="2em1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2em2">M2:</label>
+											<input type="number" name="2em2" id="2em2" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="2em3">M3:</label>
+											<input type="number" name="2em3" id="2em3" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2em4">M4:</label>
+											<input type="number" name="2em4" id="2em4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2em5">M5:</label>
+											<input type="number" name="2em5" id="2em5" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+
+										<div class="col-sm-4">
+											<label class="mb-2" for="2em6">M6:</label>
+											<input type="number" name="2em6" id="2em6" min="0" value="10">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block">
+											<label class="mb-2" for="2em7">M7:</label>
+											<input type="number" name="2em7" id="2em7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block">
+											<label class="mb-2" for="2em8">M8:</label>
+											<input type="number" name="2em8" id="2em8" min="0" value="0">
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>1º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="primeiroAnoManual"
+									onclick="habilitarModalidade('primeiroAnoCM','primeiroAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="primeiroAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="1anoeac">AC:</label>
+											<input type="number" name="1anoeac" id="1anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="1anoedf">PCD:</label>
+											<input type="number" name="1anoedf" id="1anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="primeiroAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1anoemAC">AC:</label>
+											<input type="number" name="1anoemAC" id="1anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1anoem1">M1:</label>
+											<input type="number" name="1anoem1" id="1anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1anoem2">M2:</label>
+											<input type="number" name="1anoem2" id="1anoem2" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+
+										<div class="col-sm-4">
+											<label class="mb-2" for="1anoem3">M3:</label>
+											<input type="number" name="1anoem3" id="1anoem3" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1anoem4">M4:</label>
+											<input type="number" name="1anoem4" id="1anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="1anoem5">M5:</label>
+											<input type="number" name="1anoem5" id="1anoem5" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="1anoem6">M6:</label>
+											<input type="number" name="1anoem6" id="1anoem6" min="0" value="10">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="1anoem7">M7:</label>
+											<input type="number" name="1anoem7" id="1anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="1anoem8">M8:</label>
+											<input type="number" name="1anoem8" id="1anoem8" min="0" value="0">
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>2º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="segundoAnoManual"
+									onclick="habilitarModalidade('segundoAnoCM','segundoAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="segundoAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="2anoeac">AC:</label>
+											<input type="number" name="2anoeac" id="2anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="2anoedf">PCD:</label>
+											<input type="number" name="2anoedf" id="2anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="segundoAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="2anoemAC">AC:</label>
+											<input type="number" name="2anoemAC" id="2anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2anoem1">M1:</label>
+											<input type="number" name="2anoem1" id="2anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2anoem2">M2:</label>
+											<input type="number" name="2anoem2" id="2anoem2" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="2anoem3">M3:</label>
+											<input type="number" name="2anoem3" id="2anoem3" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2anoem4">M4:</label>
+											<input type="number" name="2anoem4" id="2anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="2anoem5">M5:</label>
+											<input type="number" name="2anoem5" id="2anoem5" min="0" value="10">
+										</div>
+
+									</div>
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="2anoem6">M6:</label>
+											<input type="number" name="2anoem6" id="2anoem6" min="0" value="10">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="2anoem7">M7:</label>
+											<input type="number" name="2anoem7" id="2anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="2anoem8">M8:</label>
+											<input type="number" name="2anoem8" id="2anoem8" min="0" value="0">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>3º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="terceiroAnoManual"
+									onclick="habilitarModalidade('terceiroAnoCM','terceiroAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="terceiroAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="3anoeac">AC:</label>
+											<input type="number" name="3anoeac" id="3anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="3anoedf">PCD:</label>
+											<input type="number" name="3anoedf" id="3anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="terceiroAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-1" for="3anoemAC">AC:</label>
+											<input type="number" name="3anoemAC" id="3anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="3anoem1">M1:</label>
+											<input type="number" name="3anoem1" id="3anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="3anoem2">M2:</label>
+											<input type="number" name="3anoem2" id="3anoem2" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="3anoem3">M3:</label>
+											<input type="number" name="3anoem3" id="3anoem3" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="3anoem4">M4:</label>
+											<input type="number" name="3anoem4" id="3anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="3anoem5">M5:</label>
+											<input type="number" name="3anoem5" id="3anoem5" min="0" value="10">
+										</div>
+
+									</div>
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="3anoem6">M6:</label>
+											<input type="number" name="3anoem6" id="3anoem6" min="0" value="10">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="3anoem7">M7:</label>
+											<input type="number" name="3anoem7" id="3anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="3anoem8">M8:</label>
+											<input type="number" name="3anoem8" id="3anoem8" min="0" value="0">
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>4º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="quartoAnoManual"
+									onclick="habilitarModalidade('quartoAnoCM','quartoAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="quartoAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="4anoeac">AC:</label>
+											<input type="number" name="4anoeac" id="4anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="4anoedf">PCD:</label>
+											<input type="number" name="4anoedf" id="4anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="quartoAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="4anoemAC">AC:</label>
+											<input type="number" name="4anoemAC" id="4anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="4anoem1">M1:</label>
+											<input type="number" name="4anoem1" id="4anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="4anoem2">M2:</label>
+											<input type="number" name="4anoem2" id="4anoem2" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+
+										<div class="col-sm-4">
+											<label class="mb-2" for="4anoem3">M3:</label>
+											<input type="number" name="4anoem3" id="4anoem3" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="4anoem4">M4:</label>
+											<input type="number" name="4anoem4" id="4anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="4anoem5">M5:</label>
+											<input type="number" name="4anoem5" id="4anoem5" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="4anoem6">M6:</label>
+											<input type="number" name="4anoem6" id="4anoem6" min="0" value="10">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="4anoem7">M7:</label>
+											<input type="number" name="4anoem7" id="4anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="4anoem8">M8:</label>
+											<input type="number" name="4anoem8" id="4anoem8" min="0" value="0">
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>5º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="quintoAnoManual"
+									onclick="habilitarModalidade('quintoAnoCM','quintoAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="quintoAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="5anoeac">AC:</label>
+											<input type="number" name="5anoeac" id="5anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="5anoedf">PCD:</label>
+											<input type="number" name="5anoedf" id="5anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="quintoAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="5anoemAC">AC:</label>
+											<input type="number" name="5anoemAC" id="5anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="5anoem1">M1:</label>
+											<input type="number" name="5anoem1" id="5anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="5anoem2">M2:</label>
+											<input type="number" name="5anoem2" id="5anoem2" min="0" value="10">
+										</div>
+
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="5anoem3">M3:</label>
+											<input type="number" name="5anoem3" id="5anoem3" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="5anoem4">M4:</label>
+											<input type="number" name="5anoem4" id="5anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="5anoem5">M5:</label>
+											<input type="number" name="5anoem5" id="5anoem5" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="5anoem6">M6:</label>
+											<input type="number" name="5anoem6" id="5anoem6" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="5anoem7">M7:</label>
+											<input type="number" name="5anoem7" id="5anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="5anoem8">M8:</label>
+											<input type="number" name="5anoem8" id="5anoem8" min="0" value="0">
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>6º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="sextoAnoManual"
+									onclick="habilitarModalidade('sextoAnoCM','sextoAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="sextoAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="6anoeac">AC:</label>
+											<input type="number" name="6anoeac" id="6anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="6anoedf">PCD:</label>
+											<input type="number" name="6anoedf" id="6anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="sextoAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="6anoemAC">AC:</label>
+											<input type="number" name="6anoemAC" id="6anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="6anoem1">M1:</label>
+											<input type="number" name="6anoem1" id="6anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="6anoem2">M2:</label>
+											<input type="number" name="6anoem2" id="6anoem2" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="6anoem3">M3:</label>
+											<input type="number" name="6anoem3" id="6anoem3" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4">
+											<label class="mb-2" for="6anoem4">M4:</label>
+											<input type="number" name="6anoem4" id="6anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="6anoem5">M5:</label>
+											<input type="number" name="6anoem5" id="6anoem5" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="6anoem6">M6:</label>
+											<input type="number" name="6anoem6" id="6anoem6" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="6anoem7">M7:</label>
+											<input type="number" name="6anoem7" id="6anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="6anoem8">M8:</label>
+											<input type="number" name="6anoem8" id="6anoem8" min="0" value="0">
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>7º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="setimoAnoManual"
+									onclick="habilitarModalidade('setimoAnoCM','setimoAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="setimoAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="7anoeac">AC:</label>
+											<input type="number" name="7anoeac" id="7anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="7anoedf">PCD:</label>
+											<input type="number" name="7anoedf" id="7anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="setimoAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="7anoemAC">AC:</label>
+											<input type="number" name="7anoemAC" id="7anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="7anoem1">M1:</label>
+											<input type="number" name="7anoem1" id="7anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="7anoem2">M2:</label>
+											<input type="number" name="7anoem2" id="7anoem2" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="7anoem3">M3:</label>
+											<input type="number" name="7anoem3" id="7anoem3" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4">
+											<label class="mb-2" for="7anoem4">M4:</label>
+											<input type="number" name="7anoem4" id="7anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="7anoem5">M5:</label>
+											<input type="number" name="7anoem5" id="7anoem5" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="7anoem6">M6:</label>
+											<input type="number" name="7anoem6" id="7anoem6" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="7anoem7">M7:</label>
+											<input type="number" name="7anoem7" id="7anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="7anoem8">M8:</label>
+											<input type="number" name="7anoem8" id="7anoem8" min="0" value="0">
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>8º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="oitavoAnoManual"
+									onclick="habilitarModalidade('oitavoAnoCM','oitavoAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="oitavoAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="8anoeac">AC:</label>
+											<input type="number" name="8anoeac" id="8anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="8anoedf">PCD:</label>
+											<input type="number" name="8anoedf" id="8anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="oitavoAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="8anoemAC">AC:</label>
+											<input type="number" name="8anoemAC" id="8anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="8anoem1">M1:</label>
+											<input type="number" name="8anoem1" id="8anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="8anoem2">M2:</label>
+											<input type="number" name="8anoem2" id="8anoem2" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="8anoem3">M3:</label>
+											<input type="number" name="8anoem3" id="8anoem3" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4">
+											<label class="mb-2" for="8anoem4">M4:</label>
+											<input type="number" name="8anoem4" id="8anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="8anoem5">M5:</label>
+											<input type="number" name="8anoem5" id="8anoem5" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="8anoem6">M6:</label>
+											<input type="number" name="8anoem6" id="8anoem6" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="8anoem7">M7:</label>
+											<input type="number" name="8anoem7" id="8anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="8anoem8">M8:</label>
+											<input type="number" name="8anoem8" id="8anoem8" min="0" value="0">
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="fundo col-sm-6">
+
+								<legend>
+									<h3>9º Ano Fundamental - Espera</h3>
+								</legend>
+
+								<input type="checkbox" name="nonoAnoManual"
+									onclick="habilitarModalidade('nonoAnoCM','nonoAnoSM', this.checked)">Habilitar
+								modalidades
+
+								<div id="nonoAnoSM" style="display:block">
+									<div class="linha col-sm-12">
+										<div class="col-sm-6">
+											<label class="mb-2" for="9anoeac">AC:</label>
+											<input type="number" name="9anoeac" id="9anoeac" min="1" value="10">
+										</div>
+										<div class="col-sm-6">
+											<label class="mb-2" for="9anoedf">PCD:</label>
+											<input type="number" name="9anoedf" id="9anoedf" min="0" value="10">
+										</div>
+									</div>
+
+								</div>
+								<div id="nonoAnoCM" style="display:none">
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="9anoemAC">AC:</label>
+											<input type="number" name="9anoemAC" id="9anoemAC" min="1" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="9anoem1">M1:</label>
+											<input type="number" name="9anoem1" id="9anoem1" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="9anoem2">M2:</label>
+											<input type="number" name="9anoem2" id="9anoem2" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="9anoem3">M3:</label>
+											<input type="number" name="9anoem3" id="9anoem3" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4">
+											<label class="mb-2" for="9anoem4">M4:</label>
+											<input type="number" name="9anoem4" id="9anoem4" min="0" value="10">
+										</div>
+										<div class="col-sm-4">
+											<label class="mb-2" for="9anoem5">M5:</label>
+											<input type="number" name="9anoem5" id="9anoem5" min="0" value="10">
+										</div>
+									</div>
+
+									<div class="linha col-sm-12">
+										<div class="col-sm-4">
+											<label class="mb-2" for="9anoem6">M6:</label>
+											<input type="number" name="9anoem6" id="9anoem6" min="0" value="10">
+										</div>
+
+										<div class="col-sm-4" name="ModalidadeM7" style="display:block;">
+											<label class="mb-2" for="9anoem7">M7:</label>
+											<input type="number" name="9anoem7" id="9anoem7" min="0" value="0">
+										</div>
+										<div class="col-sm-4" name="ModalidadeM8" style="display:block;">
+											<label class="mb-2" for="9anoem8">M8:</label>
+											<input type="number" name="9anoem8" id="9anoem8" min="0" value="0">
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+				
+                        <div class="col-sm-12" id="info" >
+                            
+                            Importação dos candidatos:
+                            <br />
+                            <small>
+                                Formato: CSV
+                                <br />Separador: ; (ponto e vírgula)
+                            </small>
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="file" id="arquivo" onchange="readFile(this), document.getElementById('candidatosDiv').style.display = 'block'; calculate()">
+                        </div>
+
+                        <div>
+                            <p id="md5"></p>
+                        </div>
+                            
+                        <div class="col-sm-12" id="fundoSorteio">
+                            <div class="col-sm-12" id="candidatosDiv" style="display:none">
+                                <td colspan=4>
+                                    <hr />
+                                    <div id="listaCandidatos">
+                                        <p><b>Total de candidatos: </b></p>
+                                    </div>
+
+                                    <div id="divCandidatos1pvAP" class="lista"></div>
+                                    <div id="divCandidatos1pvDF" class="lista"></div>
+                                    <div id="divCandidatos1pvmAC" class="lista"></div>
+                                    <div id="divCandidatos1pvm1" class="lista"></div>
+                                    <div id="divCandidatos1pvm2" class="lista"></div>
+                                    <div id="divCandidatos1pvm3" class="lista"></div>
+                                    <div id="divCandidatos1pvm4" class="lista"></div>
+                                    <div id="divCandidatos1pvm5" class="lista"></div>
+                                    <div id="divCandidatos1pvm6" class="lista"></div>
+                                    <div id="divCandidatos1pvm7" class="lista"></div>
+                                    <div id="divCandidatos1pvm8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos2peAP" class="lista"></div>
+                                    <div id="divCandidatos2peDF" class="lista"></div>
+                                    <div id="divCandidatos2pemAC" class="lista"></div>
+                                    <div id="divCandidatos2pem1" class="lista"></div>
+                                    <div id="divCandidatos2pem2" class="lista"></div>
+                                    <div id="divCandidatos2pem3" class="lista"></div>
+                                    <div id="divCandidatos2pem4" class="lista"></div>
+                                    <div id="divCandidatos2pem5" class="lista"></div>
+                                    <div id="divCandidatos2pem6" class="lista"></div>
+                                    <div id="divCandidatos2pem7" class="lista"></div>
+                                    <div id="divCandidatos2pem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos1aeAP" class="lista"></div>
+                                    <div id="divCandidatos1aeDF" class="lista"></div>
+                                    <div id="divCandidatos1aemAC" class="lista"></div>
+                                    <div id="divCandidatos1aem1" class="lista"></div>
+                                    <div id="divCandidatos1aem2" class="lista"></div>
+                                    <div id="divCandidatos1aem3" class="lista"></div>
+                                    <div id="divCandidatos1aem4" class="lista"></div>
+                                    <div id="divCandidatos1aem5" class="lista"></div>
+                                    <div id="divCandidatos1aem6" class="lista"></div>
+                                    <div id="divCandidatos1aem7" class="lista"></div>
+                                    <div id="divCandidatos1aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos2aeAP" class="lista"></div>
+                                    <div id="divCandidatos2aeDF" class="lista"></div>
+                                    <div id="divCandidatos2aemAC" class="lista"></div>
+                                    <div id="divCandidatos2aem1" class="lista"></div>
+                                    <div id="divCandidatos2aem2" class="lista"></div>
+                                    <div id="divCandidatos2aem3" class="lista"></div>
+                                    <div id="divCandidatos2aem4" class="lista"></div>
+                                    <div id="divCandidatos2aem5" class="lista"></div>
+                                    <div id="divCandidatos2aem6" class="lista"></div>
+                                    <div id="divCandidatos2aem7" class="lista"></div>
+                                    <div id="divCandidatos2aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos3aeAP" class="lista"></div>
+                                    <div id="divCandidatos3aeDF" class="lista"></div>
+                                    <div id="divCandidatos3aemAC" class="lista"></div>
+                                    <div id="divCandidatos3aem1" class="lista"></div>
+                                    <div id="divCandidatos3aem2" class="lista"></div>
+                                    <div id="divCandidatos3aem3" class="lista"></div>
+                                    <div id="divCandidatos3aem4" class="lista"></div>
+                                    <div id="divCandidatos3aem5" class="lista"></div>
+                                    <div id="divCandidatos3aem6" class="lista"></div>
+                                    <div id="divCandidatos3aem7" class="lista"></div>
+                                    <div id="divCandidatos3aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos4aeAP" class="lista"></div>
+                                    <div id="divCandidatos4aeDF" class="lista"></div>
+                                    <div id="divCandidatos4aemAC" class="lista"></div>
+                                    <div id="divCandidatos4aem1" class="lista"></div>
+                                    <div id="divCandidatos4aem2" class="lista"></div>
+                                    <div id="divCandidatos4aem3" class="lista"></div>
+                                    <div id="divCandidatos4aem4" class="lista"></div>
+                                    <div id="divCandidatos4aem5" class="lista"></div>
+                                    <div id="divCandidatos4aem6" class="lista"></div>
+                                    <div id="divCandidatos4aem7" class="lista"></div>
+                                    <div id="divCandidatos4aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos5aeAP" class="lista"></div>
+                                    <div id="divCandidatos5aeDF" class="lista"></div>
+                                    <div id="divCandidatos5aemAC" class="lista"></div>
+                                    <div id="divCandidatos5aem1" class="lista"></div>
+                                    <div id="divCandidatos5aem2" class="lista"></div>
+                                    <div id="divCandidatos5aem3" class="lista"></div>
+                                    <div id="divCandidatos5aem4" class="lista"></div>
+                                    <div id="divCandidatos5aem5" class="lista"></div>
+                                    <div id="divCandidatos5aem6" class="lista"></div>
+                                    <div id="divCandidatos5aem7" class="lista"></div>
+                                    <div id="divCandidatos5aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos6aeAP" class="lista"></div>
+                                    <div id="divCandidatos6aeDF" class="lista"></div>
+                                    <div id="divCandidatos6aemAC" class="lista"></div>
+                                    <div id="divCandidatos6aem1" class="lista"></div>
+                                    <div id="divCandidatos6aem2" class="lista"></div>
+                                    <div id="divCandidatos6aem3" class="lista"></div>
+                                    <div id="divCandidatos6aem4" class="lista"></div>
+                                    <div id="divCandidatos6aem5" class="lista"></div>
+                                    <div id="divCandidatos6aem6" class="lista"></div>
+                                    <div id="divCandidatos6aem7" class="lista"></div>
+                                    <div id="divCandidatos6aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos7aeAP" class="lista"></div>
+                                    <div id="divCandidatos7aeDF" class="lista"></div>
+                                    <div id="divCandidatos7aemAC" class="lista"></div>
+                                    <div id="divCandidatos7aem1" class="lista"></div>
+                                    <div id="divCandidatos7aem2" class="lista"></div>
+                                    <div id="divCandidatos7aem3" class="lista"></div>
+                                    <div id="divCandidatos7aem4" class="lista"></div>
+                                    <div id="divCandidatos7aem5" class="lista"></div>
+                                    <div id="divCandidatos7aem6" class="lista"></div>
+                                    <div id="divCandidatos7aem7" class="lista"></div>
+                                    <div id="divCandidatos7aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos8aeAP" class="lista"></div>
+                                    <div id="divCandidatos8aeDF" class="lista"></div>
+                                    <div id="divCandidatos8aemAC" class="lista"></div>
+                                    <div id="divCandidatos8aem1" class="lista"></div>
+                                    <div id="divCandidatos8aem2" class="lista"></div>
+                                    <div id="divCandidatos8aem3" class="lista"></div>
+                                    <div id="divCandidatos8aem4" class="lista"></div>
+                                    <div id="divCandidatos8aem5" class="lista"></div>
+                                    <div id="divCandidatos8aem6" class="lista"></div>
+                                    <div id="divCandidatos8aem7" class="lista"></div>
+                                    <div id="divCandidatos8aem8" class="lista"></div>
+                                    
+
+                                    <div id="divCandidatos9aeAP" class="lista"></div>
+                                    <div id="divCandidatos9aeDF" class="lista"></div>
+                                    <div id="divCandidatos9aemAC" class="lista"></div>
+                                    <div id="divCandidatos9aem1" class="lista"></div>
+                                    <div id="divCandidatos9aem2" class="lista"></div>
+                                    <div id="divCandidatos9aem3" class="lista"></div>
+                                    <div id="divCandidatos9aem4" class="lista"></div>
+                                    <div id="divCandidatos9aem5" class="lista"></div>
+                                    <div id="divCandidatos9aem6" class="lista"></div>
+                                    <div id="divCandidatos9aem7" class="lista"></div>
+                                    <div id="divCandidatos9aem8" class="lista"></div>
+                                    
+
+
+
+                                </td>
+                            </div>
+                    
+                            <tr>
+                                <td colspan=4>
+                                    <hr />
+                                </td>
+                            <tr>
+                            
+
+                            <div class='col-sm-12' style="margin-top: 10px;">
+                                <div id="s" style="background-color:rgb(48, 126, 156);  display:inline-block; width:48px; height:57px; background-image: url(images/s.png); border-radius:5px;">
+                                </div>
+                                <div id="o" style="background-color:rgb(48, 126, 156); display:inline-block;  width:54px; height:55px; background-image: url(images/o.png); border-radius:5px;">
+                                </div>
+                                <div id="r" style="background-color:rgb(48, 126, 156); display:inline-block;  width:43px; height:51px; background-image: url(images/r.png); border-radius:5px;">
+                                </div>
+                                <div id="t" style="background-color:rgb(48, 126, 156); display:inline-block;  width:37px; height:48px; background-image: url(images/t.png); border-radius:5px;">
+                                </div>
+                                <div id="e" style="background-color:rgb(48, 126, 156); display:inline-block;  width:42px; height:51px; background-image: url(images/e.png); border-radius:5px;">
+                                </div>
+                                <div id="a" style="background-color:rgb(48, 126, 156); display:inline-block;  width:48px; height:46px; background-image: url(images/a.png); border-radius:5px;">
+                                </div>
+                                <div id="d" style="background-color:rgb(48, 126, 156); display:inline-block;  width:45px; height:47px; background-image: url(images/d.png); border-radius:5px;">
+                                </div>
+                                <div id="oo" style="background-color:rgb(48, 126, 156); display:inline-block;  width:54px; height:55px; background-image: url(images/oo.png); border-radius:5px;">
+                                </div>
+                            </div>
+
+                            <script type="text/javascript" src="js/animation.js"></script>
+                            
+                            <td>
+                                <input type="button" class="btn btn-dark" value="Sortear" style="padding:10px 30px;"
+                                    onclick="s.play(); o.play(); r.play(); t.play(); e.play(); a.play(); d.play(); oo.play(); docClear(); sorteioListas(); document.getElementById('candidatosDiv').style.display = 'none'; document.getElementById('btnradio2').checked = true;">
+                            </td>
+
+                            
+                            <td width=270>
+                                <input type="checkbox" name="sementeManual"
+                                    onclick="document.sorteio.semente.disabled = !this.checked;"
+                                    style='visibility:visible'>Inserir semente manualmente
+                            </td>
+                            <td>
+                                Semente:
+                            </td>
+                            <td>
+                                <input type="text" name="semente" size=20 maxlength=50 disabled style='visibility:visible'>
+                            </td>
+                            <p id="idsemente" class="fundocor"></p>
+                        </div>
+                    
+                    
+                        <p id="resultado" class="fundocor" ></p>
+
+                        <div id="visibilidade1pAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">1º Período</h2>
+                            <p id="resultado1pvAP" class="fundocor"></p>
+                            <p id="resultado1pvDF" class="fundocor"></p>
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">1º Período - Espera</h2>
+                            <p id="resultado1peAP" class="fundocor"></p>
+                            <p id="resultado1peDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade1pModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">1º Período</h2>
+                            <p id="resultado1pvmAC" class="fundocor"></p>
+                            <p id="resultado1pvm1" class="fundocor"></p>
+                            <p id="resultado1pvm2" class="fundocor"></p>
+                            <p id="resultado1pvm3" class="fundocor"></p>
+                            <p id="resultado1pvm4" class="fundocor"></p>
+                            <p id="resultado1pvm5" class="fundocor"></p>
+                            <p id="resultado1pvm6" class="fundocor"></p>
+                            <p id="resultado1pvm7" class="fundocor"></p>
+                            <p id="resultado1pvm8" class="fundocor"></p>
+                            
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">1º Período - Espera</h2>
+                            <p id="resultado1pemAC" class="fundocor"></p>
+                            <p id="resultado1pem1" class="fundocor"></p>
+                            <p id="resultado1pem2" class="fundocor"></p>
+                            <p id="resultado1pem3" class="fundocor"></p>
+                            <p id="resultado1pem4" class="fundocor"></p>
+                            <p id="resultado1pem5" class="fundocor"></p>
+                            <p id="resultado1pem6" class="fundocor"></p>
+                            <p id="resultado1pem7" class="fundocor"></p>
+                            <p id="resultado1pem8" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade2pAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">2º Período - Espera</h2>
+                            <p id="resultado2peAC" class="fundocor"></p>
+                            <p id="resultado2peDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade2pModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">2º Período - Espera</h2>
+                            <p id="resultado2pemAC" class="fundocor"></p>
+                            <p id="resultado2pem1" class="fundocor"></p>
+                            <p id="resultado2pem2" class="fundocor"></p>
+                            <p id="resultado2pem3" class="fundocor"></p>
+                            <p id="resultado2pem4" class="fundocor"></p>
+                            <p id="resultado2pem5" class="fundocor"></p>
+                            <p id="resultado2pem6" class="fundocor"></p>
+                            <p id="resultado2pem7" class="fundocor"></p>
+                            <p id="resultado2pem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade1aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">1º Ano - Espera</h2>
+                            <p id="resultado1aeAC" class="fundocor"></p>
+                            <p id="resultado1aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade1aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">1º Ano - Espera</h2>
+                            <p id="resultado1aemAC" class="fundocor"></p>
+                            <p id="resultado1aem1" class="fundocor"></p>
+                            <p id="resultado1aem2" class="fundocor"></p>
+                            <p id="resultado1aem3" class="fundocor"></p>
+                            <p id="resultado1aem4" class="fundocor"></p>
+                            <p id="resultado1aem5" class="fundocor"></p>
+                            <p id="resultado1aem6" class="fundocor"></p>
+                            <p id="resultado1aem7" class="fundocor"></p>
+                            <p id="resultado1aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade2aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">2º Ano - Espera</h2>
+                            <p id="resultado2aeAC" class="fundocor"></p>
+                            <p id="resultado2aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade2aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">2º Ano - Espera</h2>
+                            <p id="resultado2aemAC" class="fundocor"></p>
+                            <p id="resultado2aem1" class="fundocor"></p>
+                            <p id="resultado2aem2" class="fundocor"></p>
+                            <p id="resultado2aem3" class="fundocor"></p>
+                            <p id="resultado2aem4" class="fundocor"></p>
+                            <p id="resultado2aem5" class="fundocor"></p>
+                            <p id="resultado2aem6" class="fundocor"></p>
+                            <p id="resultado2aem7" class="fundocor"></p>
+                            <p id="resultado2aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade3aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">3º Ano - Espera</h2>
+                            <p id="resultado3aeAC" class="fundocor"></p>
+                            <p id="resultado3aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade3aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">3º Ano - Espera</h2>
+                            <p id="resultado3aemAC" class="fundocor"></p>
+                            <p id="resultado3aem1" class="fundocor"></p>
+                            <p id="resultado3aem2" class="fundocor"></p>
+                            <p id="resultado3aem3" class="fundocor"></p>
+                            <p id="resultado3aem4" class="fundocor"></p>
+                            <p id="resultado3aem5" class="fundocor"></p>
+                            <p id="resultado3aem6" class="fundocor"></p>
+                            <p id="resultado3aem7" class="fundocor"></p>
+                            <p id="resultado3aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade4aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">4º Ano - Espera</h2>
+                            <p id="resultado4aeAC" class="fundocor"></p>
+                            <p id="resultado4aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade4aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">4º Ano - Espera</h2>
+                            <p id="resultado4aemAC" class="fundocor"></p>
+                            <p id="resultado4aem1" class="fundocor"></p>
+                            <p id="resultado4aem2" class="fundocor"></p>
+                            <p id="resultado4aem3" class="fundocor"></p>
+                            <p id="resultado4aem4" class="fundocor"></p>
+                            <p id="resultado4aem5" class="fundocor"></p>
+                            <p id="resultado4aem6" class="fundocor"></p>
+                            <p id="resultado4aem7" class="fundocor"></p>
+                            <p id="resultado4aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade5aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">5º Ano - Espera</h2>
+                            <p id="resultado5aeAC" class="fundocor"></p>
+                            <p id="resultado5aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade5aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">5º Ano - Espera</h2>
+                            <p id="resultado5aemAC" class="fundocor"></p>
+                            <p id="resultado5aem1" class="fundocor"></p>
+                            <p id="resultado5aem2" class="fundocor"></p>
+                            <p id="resultado5aem3" class="fundocor"></p>
+                            <p id="resultado5aem4" class="fundocor"></p>
+                            <p id="resultado5aem5" class="fundocor"></p>
+                            <p id="resultado5aem6" class="fundocor"></p>
+                            <p id="resultado5aem7" class="fundocor"></p>
+                            <p id="resultado5aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade6aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">6º Ano - Espera</h2>
+                            <p id="resultado6aeAC" class="fundocor"></p>
+                            <p id="resultado6aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade6aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">6º Ano - Espera</h2>
+                            <p id="resultado6aemAC" class="fundocor"></p>
+                            <p id="resultado6aem1" class="fundocor"></p>
+                            <p id="resultado6aem2" class="fundocor"></p>
+                            <p id="resultado6aem3" class="fundocor"></p>
+                            <p id="resultado6aem4" class="fundocor"></p>
+                            <p id="resultado6aem5" class="fundocor"></p>
+                            <p id="resultado6aem6" class="fundocor"></p>
+                            <p id="resultado6aem7" class="fundocor"></p>
+                            <p id="resultado6aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade7aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">7º Ano - Espera</h2>
+                            <p id="resultado7aeAC" class="fundocor"></p>
+                            <p id="resultado7aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade7aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">7º Ano - Espera</h2>
+                            <p id="resultado7aemAC" class="fundocor"></p>
+                            <p id="resultado7aem1" class="fundocor"></p>
+                            <p id="resultado7aem2" class="fundocor"></p>
+                            <p id="resultado7aem3" class="fundocor"></p>
+                            <p id="resultado7aem4" class="fundocor"></p>
+                            <p id="resultado7aem5" class="fundocor"></p>
+                            <p id="resultado7aem6" class="fundocor"></p>
+                            <p id="resultado7aem7" class="fundocor"></p>
+                            <p id="resultado7aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade8aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">8º Ano - Espera</h2>
+                            <p id="resultado8aeAC" class="fundocor"></p>
+                            <p id="resultado8aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade8aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">8º Ano - Espera</h2>
+                            <p id="resultado8aemAC" class="fundocor"></p>
+                            <p id="resultado8aem1" class="fundocor"></p>
+                            <p id="resultado8aem2" class="fundocor"></p>
+                            <p id="resultado8aem3" class="fundocor"></p>
+                            <p id="resultado8aem4" class="fundocor"></p>
+                            <p id="resultado8aem5" class="fundocor"></p>
+                            <p id="resultado8aem6" class="fundocor"></p>
+                            <p id="resultado8aem7" class="fundocor"></p>
+                            <p id="resultado8aem8" class="fundocor"></p>
+                        </div>
+
+                        <div id="visibilidade9aAC" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">9º Ano - Espera</h2>
+                            <p id="resultado9aeAC" class="fundocor"></p>
+                            <p id="resultado9aeDF" class="fundocor"></p>
+                        </div>
+                        
+                        <div id="visibilidade9aModalidades" style="display:none">
+                            <h2 style="background-color: rgb(25, 25, 29); color:white">9º Ano - Espera</h2>
+                            <p id="resultado9aemAC" class="fundocor"></p>
+                            <p id="resultado9aem1" class="fundocor"></p>
+                            <p id="resultado9aem2" class="fundocor"></p>
+                            <p id="resultado9aem3" class="fundocor"></p>
+                            <p id="resultado9aem4" class="fundocor"></p>
+                            <p id="resultado9aem5" class="fundocor"></p>
+                            <p id="resultado9aem6" class="fundocor"></p>
+                            <p id="resultado9aem7" class="fundocor"></p>
+                            <p id="resultado9aem8" class="fundocor"></p>
+                        </div>
+
+                        <p id="informacoes" class="fundocor"></p>
+					</form>
+				</div>
+			</main>
+
+			<footer>
+                <p style="color:white"><b>Criado por Paulo Diego S. Souza e Pedro Ribeiro - UFU.</b></p>
+				<p style="color:white" id="copyright"><b>©Copyright 2025. Todos os direitos reservados.</b></p>
+                <p style="color:white" id="copyright">Versão: 3.0</p>
+			</footer>
+		</div>
+	</div>
+</body>
+
+</html>
